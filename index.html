@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dan Laz — Y2K Dark Ultra (All‑in‑One)</title>
 <meta name="description" content="All‑in‑one: intro, themes, CRT/VHS, dalmatian mascot, mini‑arcade, screensavers, fun facts calendar, GIF wall, guestbook.">
+<link rel="preload" as="audio" href="https://danlaz-blog.github.io/Website/ps1.mp3" type="audio/mpeg">
 <style>
   :root{--bg:#000a12;--txt:#e7f7ff;--accent:#00ffff;--accent2:#ff00ff;--ok:#00FF66}
   html,body{height:100%}
@@ -86,8 +88,11 @@
 <body>
 <noscript><style>#introOverlay{display:none}</style></noscript>
 
-<!-- Intro Music -->
-ps1.mp3</audio>
+<!-- Intro Music (FIXED) -->
+<audio id="introMusic" preload="auto">
+  <source src="https://danlaz-blog.github.io/Website/ps1.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
@@ -227,7 +232,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <section id="home" class="card">
           <div class="uc" style="height:26px;border:2px solid #FFD76A;background:repeating-linear-gradient(-45deg,#000 0 12px,#FFD76A 12px 24px);display:flex;align-items:center;justify-content:center;color:#000;font-weight:bold;letter-spacing:1px"><span style="background:#000c;color:var(--txt);border:2px solid var(--accent);padding:2px 6px">UNDER CONSTRUCTION</span></div>
           <h2>Welcome</h2>
-          <p>Dark‑only themes, cross‑fade & parallax, CRT/VHS, dalmatian mascot (Neocities), mini‑arcade & screensavers, GIF wall, Fun Facts Calendar, guestbook.</p>
+          <p>Dark‑only themes, cross‑fade &amp; parallax, CRT/VHS, dalmatian mascot (Neocities), mini‑arcade &amp; screensavers, GIF wall, Fun Facts Calendar, guestbook.</p>
         </section>
 
         <div class="divider"></div>
@@ -370,7 +375,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     <div class="strip">
       <marquee behavior="alternate" scrollamount="4" width="80%">Thanks for visiting — Bookmark this page! ★</marquee>
     </div>
-    Hits: <span id="hitsBottom" class="counter"></span> • Last updated: <span id="lastUpdated">2025-12-19</span>
+    Hits: <span id="hitsBottom" class="counter"></span> • Last updated: <span id="lastUpdated">2025-12-21</span>
   </div>
 </div>
 
@@ -426,7 +431,7 @@ SND.bark = () => {
 let DIGIT_SPRITE_URL=null;
 function buildDigitSprite(){const W=14,H=20,COLS=10;const cv=document.createElement('canvas');cv.width=W*COLS;cv.height=H;const ctx=cv.getContext('2d');const font={"0":[1,1,1,1,1,1,0],"1":[0,1,1,0,0,0,0],"2":[1,1,0,1,1,0,1],"3":[1,1,1,1,0,0,1],"4":[0,1,1,0,0,1,1],"5":[1,0,1,1,0,1,1],"6":[1,0,1,1,1,1,1],"7":[1,1,1,0,0,0,0],"8":[1,1,1,1,1,1,1],"9":[1,1,1,1,0,1,1]};for(let i=0;i<10;i++){const x=i*W;const p=font[String(i)];ctx.fillStyle='#0f0';if(p[0])ctx.fillRect(x+2,2,W-5,2);if(p[1])ctx.fillRect(x+W-4,4,2,5);if(p[2])ctx.fillRect(x+W-4,11,2,5);if(p[3])ctx.fillRect(x+2,H-4,W-5,2);if(p[4])ctx.fillRect(x+2,11,2,5);if(p[5])ctx.fillRect(x+2,4,2,5);if(p[6])ctx.fillRect(x+2,9,W-5,2);}DIGIT_SPRITE_URL=cv.toDataURL('image/png');}
 function digitsHTML(n){if(!DIGIT_SPRITE_URL)buildDigitSprite();return String(n).padStart(6,'0').split('').map(d=>`<span class="digitSprite" style="background-image:url('${DIGIT_SPRITE_URL}');background-position:${-14*parseInt(d)}px 0"></span>`).join('');}
-function initHits(){const key='retro_hits_sprite_allinone_v1';let h=+(localStorage.getItem(key)||0)+1;localStorage.setItem(key,h);document.getElementById('hitsTop').innerHTML=digitsHTML(h);document.getElementById('hitsBottom').innerHTML=digitsHTML(h);document.getElementById('lastUpdated').textContent='2025-12-19';}
+function initHits(){const key='retro_hits_sprite_allinone_v1';let h=+(localStorage.getItem(key)||0)+1;localStorage.setItem(key,h);document.getElementById('hitsTop').innerHTML=digitsHTML(h);document.getElementById('hitsBottom').innerHTML=digitsHTML(h);document.getElementById('lastUpdated').textContent='2025-12-21';}
 
 /* ===== BADGES/GIFS (generated) ===== */
 function genBadge(text,bg='#111133',stroke='#0ff',fg='#fff'){const cv=document.createElement('canvas');cv.width=88;cv.height=31;const ctx=cv.getContext('2d');ctx.fillStyle=bg;ctx.fillRect(0,0,88,31);ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.strokeRect(1,1,86,29);ctx.font='10px Verdana';ctx.fillStyle=fg;ctx.textBaseline='top';ctx.fillText(text, 4, 10);return cv.toDataURL('image/gif');}
@@ -472,7 +477,7 @@ function gifReset(el){const cell=findCellFrom(el);if(!cell)return;cell.dataset.h
 
 /* ===== Achievements ===== */
 const ACH_KEY='dan_ach_v1'; const ACH={ snake_10:'Snake: 10 points', breakout_20:'Breakout: 20 bricks', flappy_5:'Flappy: 5 pipes' };
-function achLoad(){ try{return JSON.parse(localStorage.getItem(ACH_KEY)||'{}')}catch(e){return{}} }
+function achLoad(){ try{return JSON.parse(localStorage.getItem(ACH_KEY)||'{}')}catch(e){return{} } }
 function achSave(d){ localStorage.setItem(ACH_KEY, JSON.stringify(d)); }
 function achUnlock(k){ const a=achLoad(); if(a[k]) return; a[k]=Date.now(); achSave(a); alert('Achievement unlocked: '+ACH[k]); }
 
@@ -591,4 +596,3 @@ window.addEventListener('mousemove', e=>{ const dx=(e.clientX/innerWidth - .5), 
 </script>
 </body>
 </html>
-
