@@ -86,6 +86,67 @@
 <body>
 <noscript><style>#introOverlay{display:none}</style></noscript>
 
+<!-- Intro Music -->
+ps1.mp3</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const audio = document.getElementById('introMusic');
+  audio.volume = 0.6;          // volume iniziale (60%)
+  // audio.loop = true;        // attivalo se vuoi loop continuo
+
+  // Prova a far partire subito (spesso bloccato)
+  try {
+    await audio.play();
+    console.log('Music autoplayed');
+  } catch (err) {
+    console.log('Autoplay blocked:', err);
+    // Mostra un piccolo prompt per l’avvio manuale
+    const prompt = document.createElement('div');
+    prompt.innerHTML = `
+      <div id="audioPrompt" style="
+        position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+        background:rgba(0,0,0,0.6); z-index:9999; backdrop-filter: blur(2px);
+        font-family: 'Verdana', sans-serif; color:#fff; text-align:center; padding:20px;">
+        <div style="background:#111; border:2px solid #39f; padding:24px; max-width:360px;">
+          <h2 style="margin:0 0 12px;">Start Audio?</h2>
+          <p style="margin:0 0 16px; font-size:14px;">
+            Click to enable the intro music.<br>(required by your browser)
+          </p>
+          <button id="enableAudioBtn" style="
+            cursor:pointer; background:#39f; color:#000; border:none; padding:10px 16px;
+            font-weight:bold; box-shadow:0 0 8px #39f;">
+            START
+          </button>
+          <div style="margin-top:12px; font-size:12px; opacity:0.8;">PS1 intro style ✨</div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(prompt);
+
+    document.getElementById('enableAudioBtn').addEventListener('click', async () => {
+      try {
+        await audio.play();
+        document.getElementById('audioPrompt').remove();
+      } catch (e) {
+        alert('Could not start audio. Please try again.');
+        console.error(e);
+      }
+    });
+
+    // In più: se l’utente clicca qualunque cosa, prova a partire
+    const oneTimeStart = async () => {
+      try { await audio.play(); document.getElementById('audioPrompt')?.remove(); }
+      catch (_) {}
+      window.removeEventListener('pointerdown', oneTimeStart);
+      window.removeEventListener('keydown', oneTimeStart);
+    };
+    window.addEventListener('pointerdown', oneTimeStart, { once: true });
+    window.addEventListener('keydown', oneTimeStart, { once: true });
+  }
+});
+</script>
+
 <!-- Back layers for cross-fade -->
 <div id="bgA"></div>
 <div id="bgB"></div>
@@ -530,3 +591,4 @@ window.addEventListener('mousemove', e=>{ const dx=(e.clientX/innerWidth - .5), 
 </script>
 </body>
 </html>
+
