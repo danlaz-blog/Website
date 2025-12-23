@@ -9,6 +9,7 @@
     html, body { margin:0; padding:0; min-height:100%; }
     body {
       background-color:#000;
+      /* Sfondo come prima; se vuoi locale, sostituisci con: url("./space.gif"); */
       background-image:url("https://raw.githubusercontent.com/danlaz-blog/Website/danlaz-blog-patch-1/space.gif");
       background-repeat:repeat;
       color:#f00;
@@ -16,25 +17,29 @@
       font-family:Verdana, Geneva, sans-serif;
     }
 
-    .wrap { display:grid; place-items:center; padding:24px; }
-    .panel { background:rgba(0,0,0,.35); border:1px dashed #f00; padding:12px 16px 18px; display:inline-block; max-width:95vw; }
+    .wrap { display:grid; place-items:center; padding:32px; }
+    /* Contenitore senza bordo/riquadro */
+    .panel { background:none; padding:16px 20px; display:inline-block; max-width:95vw; }
 
-    h1 { margin:8px 0 4px; font-size:20px; letter-spacing:.5px; }
-    .sub { margin:0 0 12px; font-size:12px; color:#ff6a6a; }
+    h1 { margin:12px 0 4px; font-size:28px; letter-spacing:.6px; }
+    .sub { margin:0; font-size:14px; color:#ff6a6a; }
 
     .buttons {
       display:inline-flex;
-      gap:6px;             /* griglia compatta stile Y2K */
+      gap:10px;               /* griglia più ampia */
       flex-wrap:wrap;
       justify-content:center;
       align-items:center;
+      margin-top:24px;        /* distanza dal titolo */
     }
 
+    /* Ingrandimento 1.5x mantenendo look pixel (132x46).
+       Se vuoi 88x31 originali: imposta width:88px; height:31px. */
     img.pixelated {
       image-rendering:pixelated;
       image-rendering:crisp-edges;
-      width:88px;          /* se un file non è 88x31, lo ridimensioniamo al formato classico */
-      height:31px;
+      width:132px;            /* 88 * 1.5 */
+      height:46px;            /* 31 * 1.5 */
       display:block;
       background:#000;
     }
@@ -47,15 +52,31 @@
       <p class="sub">This is my archive from 1996–1997. It’s a snapshot; I don’t plan to update it.</p>
 
       <div class="buttons">
-        <!-- USO GLI URL CHE MI HAI DATO, CON ?raw=true PER MOSTRARE L’IMMAGINE DIRETTA -->
-        https://github.com/danlaz-blog/Website/blob/buttons/101-dogs.jpg?raw=true
-        <img class="pixelated" src="https://te/blob/buttons/102_1.gif?raw=true
-        https://github.com/danlaz-blog/Website/blob/buttons/263gggk.gif?raw=true
-        https://github.com/danlaz-blog/Website/blob/buttons/3dkingdom.gif?raw=true
-        <img class="pixelated" src="https://github.com/danlaz-blog/Website/blobe
-        https://github.com/danlaz-blog/Website/blob/buttons/Ebay.gif?raw=true
-        https://github.com/danlaz-blog/Website/blob/buttons/abinow.gif?raw=true
-        https://github.com/danlaz-blog/Website/blob/buttons/acrobat.gif?raw=true
+        <!-- BOTTONI già presenti -->
+        https://github.com/danlaz-blog/Website/blob/main/buttons/101-dogs.jpg?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/102_1.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/263gggk.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/3dkingdom.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/800x600.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/Ebay.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/abinow.gif?raw=true
+
+        <!-- NUOVI BOTTONI aggiunti -->
+        https://github.com/danlaz-blog/Website/blob/main/buttons/acrobat.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/aimlink.gif?raw=true
+        <!-- aimlink duplicato (come da tua lista): lo lascio due volte -->
+        https://github.com/danlaz-blog/Website/blob/main/buttons/aimlink.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/altavista.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/amazon.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/aol_no.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/apple.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/b_nebula.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/cult_now.jpg?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/dnfbtn.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/dukebutanim.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/eclipse.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/ftpv.gif?raw=true
+        https://github.com/danlaz-blog/Website/blob/main/buttons/gc_icon.gif?raw=true
       </div>
     </div>
   </div>
